@@ -1,0 +1,13 @@
+<ul>
+    <li *ngFor="let elem of data">
+        <div (click)=toggleDisplayChildren(elem)>
+            <fa-icon [icon]="faFolderPlus"  *ngIf="elem.children.length > 0 && !elem.showChildren"></fa-icon>
+            <fa-icon [icon]="faFolderMinus" *ngIf="elem.showChildren"></fa-icon>
+            <fa-icon [icon]="faFile" *ngIf="elem.children.length == 0"></fa-icon>
+            {{ elem.name }} ({{elem.size | formatFileSize }})
+        </div>
+        <div name="children" *ngIf="elem.children.length > 0 && elem.showChildren">
+            <app-tree [data]="elem.children"></app-tree>
+        </div>
+    </li>
+</ul>
